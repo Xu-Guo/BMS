@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.AlarmDao">
+
+	<resultMap type="Alarm" id="AlarmResult">
+		<result property="id" column="id"/>
+		<result property="alarmTypeId" column="alarmTypeId"/>
+		<result property="alarmDetail" column="alarmDetail"/>
+		<result property="batteryDataId" column="batteryDataId"/>
+		<result property="handledMark" column="handledMark"/>
+		<result property="aTime" column="aTime"/>
+	</resultMap>
+	
+	
+	<select id="getTotal"  parameterType="Map" resultType="Integer">
+		select count(*) from t_alarm
+		<where>
+			<if test="handledMark!=null and handledMark!=''">
+				handledMark=#{handledMark}
+			</if>
+		</where>
+	</select>
+	
+	<select id="list" parameterType="Map" resultMap="AlarmResult">
+		select * from t_alarm
+		<where>
+			<if test="handledMark!=null and handledMark!=''">
+				handledMark=#{handledMark}
+			</if>
+		</where>
+	</select>
+	
+	<update id="update" parameterType="Alarm" >
+		update t_alarm
+		<set>
+			<if test="handledMark!=null">
+				handledMark=#{handledMark}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper> 

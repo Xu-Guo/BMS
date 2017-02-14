@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.BatteryDataDao">
+
+	<resultMap type="BatteryData" id="BatteryDataResult">
+		<result property="id" column="id"/>
+		<result property="battery_id" column="battery_id"/>
+		<result property="battery_status" column="battery_status"/>
+		<result property="ch_cur" column="ch_cur"/>
+		<result property="dis_cur" column="dis_cur"/>
+		<result property="charger_status" column="charger_status"/>
+		<result property="stateofcharge" column="stateofcharge"/>
+		<result property="temperature" column="temperature"/>
+		<result property="timestp" column="timestp"/>
+		
+	</resultMap>
+	
+	
+	<select id="list" parameterType="Map" resultMap="BatteryDataResult">
+		select * from t_batteryData 
+		<where>
+			<if test="id!=null and id!='' ">
+				id=#{id}
+			</if>
+			<if test="battery_id!=null and battery_id!='' ">
+				and battery_id=#{battery_id}
+			</if>
+			<if test="battery_status!=null and battery_status!='' ">
+				and battery_status=#{battery_status}
+			</if>
+			<if test="timestampStr!=null and timestampStr!='' ">
+				and DATE_FORMAT(releaseDate,'%Y/%m/%e')=#{timestampStr}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getLatestDataByBatteryId" parameterType="Map" resultMap="BatteryDataResult">
+		select * from t_batteryData
+		<where>
+			<if test="battery_id!=null and battery_id!=''">
+				battery_id=#{battery_id} 	
+			</if>
+		</where>
+		order by id desc limit 1
+	</select>
+	
+</mapper> 

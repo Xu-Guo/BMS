@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.UserDao">
+
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id"/>
+		<result property="userName" column="userName"/>
+		<result property="password" column="password"/>
+		<result property="role" column="role"/>
+	</resultMap>
+	
+	
+	<select id="getByUserName" parameterType="String" resultMap="UserResult">
+		select * from t_user where userName=#{userName}
+	</select>
+	
+	<update id="update" parameterType="User">
+		update t_user
+		<set>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+		</set>
+		where userName=#{userName}
+	</update>
+	
+</mapper> 

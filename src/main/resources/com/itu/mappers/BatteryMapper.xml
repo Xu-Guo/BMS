@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.BatteryDao">
+
+	<resultMap type="Battery" id="BatteryResult">
+		<result property="id" column="id"/>
+		<result property="batteryName" column="BatteryName"/>
+		<result property="batteryInfo" column="BatteryInfo"/>
+	</resultMap>
+	
+	
+	<select id="count"  resultType="Integer">
+		select count(*) from t_battery
+	</select>
+	
+	<select id="getById" parameterType="Map" resultMap="BatteryResult">
+		select * from t_battery
+		<where>
+			<if test="id!=null and id!=''">
+				id=#{id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="list"  resultMap="BatteryResult">
+		select * from t_battery
+	</select>
+	
+</mapper> 
