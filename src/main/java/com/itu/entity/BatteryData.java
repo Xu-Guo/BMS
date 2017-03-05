@@ -20,7 +20,8 @@ public class BatteryData {
 	private Integer stateofcharge;
 	
 	private String timestpDateStr; //string of releaseDate, year, month and day only	
-
+	
+	
 	public Integer getId() {
 		return id;
 	}

@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Battery" id="BatteryResult">
 		<result property="id" column="id"/>
-		<result property="batteryName" column="BatteryName"/>
-		<result property="batteryInfo" column="BatteryInfo"/>
+		<result property="CANId" column="CANId"/>
+		<result property="batteryName" column="batteryName"/>
+		<result property="batteryInfo" column="batteryInfo"/>
 	</resultMap>
 	
 	

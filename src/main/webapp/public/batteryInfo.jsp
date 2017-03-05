@@ -52,11 +52,20 @@
  		return row.latestBatteryData.temperature;
  	}
  	
+ 	function connect(){
+		$.post("${pageContext.request.contextPath}/public/system/connect.do", function(result){
+			if(result.success){
+				$.messager.alert("System","Connection succeed!");
+			}else{
+				$.messager.alert("System","Connection Failed!");
+			}
+		},"json");
+	}
  	
 </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="Manage Errors" class="easyui-datagrid" 
+<table id="dg" title="Battery Info" class="easyui-datagrid" 
   fitColumns="true" pagination="true" rownumbers="true"
   url="${pageContext.request.contextPath}/public/battery/list.do" fit="true" toolbar="#tb">
   <thead>
@@ -78,5 +87,10 @@
 
   </thead>
 </table>
+<div id="tb">
+	<div>
+		<a href="javascript:connect()" class="easyui-linkbutton" plain="true">Connect CAN-BUS</a>
+	</div>
+</div>
 </body>
 </html>

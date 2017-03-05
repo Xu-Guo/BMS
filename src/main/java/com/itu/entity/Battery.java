@@ -6,12 +6,21 @@ package com.itu.entity;
  */
 public class Battery {
 	private Integer id;
+	private Integer CANId;
 	private String batteryName;
 	private String batteryInfo;
 	
 	//LatestBatteryData is not a database property
 	private BatteryData LatestBatteryData;
 	
+	
+	
+	public Integer getCANId() {
+		return CANId;
+	}
+	public void setCANId(Integer cANId) {
+		CANId = cANId;
+	}
 	public Integer getId() {
 		return id;
 	}

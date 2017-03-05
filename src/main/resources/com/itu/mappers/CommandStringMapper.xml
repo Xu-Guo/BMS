@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.CommandStringDao">
+
+	<resultMap type="CommandString" id="CommandStringResult">
+		<result property="id" column="id"/>
+		<result property="commandType" column="commandType"/>
+		<result property="commandAction" column="commandAction"/>
+		<result property="commandStr" column="commandStr"/>
+	</resultMap>
+	
+	
+	<select id="count"  resultType="Integer">
+		select count(*) from t_commandString
+	</select>
+	
+	<select id="getCommandStr" parameterType="Map" resultMap="CommandStringResult">
+		select * from t_commandString 
+		<where>
+			<if test="commandType!=null and commandType!=''">
+				commandType=#{commandType}
+			</if>
+			<if test="commandAction!=null and commandAction!=''">
+				commandAction=#{commandAction}
+			</if>
+		</where>
+	</select>
+	
+	<update id="update" parameterType="CommandString" >
+		update t_commandString
+		<set>
+			<if test="commandType!=null and commandType!=''">
+				commandType=#{commandType},
+			</if>
+			<if test="commandAction!=null and commandAction!=''">
+				commandAction=#{commandAction}
+			</if>
+			<if test="commandStr!=null and commandStr!=''">
+				commandStr=#{commandStr},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from t_commandString where id=#{id}
+	</delete>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id"  parameterType="commandString" >
+		insert into t_commandString values(null,#{commandType},#{commandAction},#{commandStr})
+	</insert>
+	
+	
+	
+	
+</mapper> 

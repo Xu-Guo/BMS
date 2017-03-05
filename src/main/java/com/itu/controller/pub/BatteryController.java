@@ -43,6 +43,7 @@ public class BatteryController {
 		if(list.size()!=0){
 			for(Battery b:list){
 				Map<String, Object> map = new HashMap<>();
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+b.getId());
 				map.put("battery_id", b.getId());
 				BatteryData latestBd = batteryDataSerivce.getLatestDataByBatteryId(map);
 				b.setLatestBatteryData(latestBd);
@@ -53,6 +54,7 @@ public class BatteryController {
 		jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
 		JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
 		result.put("rows", jsonArray);
+		result.put("total", list.size());
 		ResponseUtil.write(response, result);
 		return null;
 	}

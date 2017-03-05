@@ -27,4 +27,9 @@ public class BatteryDataServiseImpl implements BatteryDataServise {
 		return batteryDataDao.getLatestDataByBatteryId(map);
 	}
 
+	@Override
+	public int add(BatteryData batteryData) {
+		return batteryDataDao.add(batteryData);
+	}
+
 }

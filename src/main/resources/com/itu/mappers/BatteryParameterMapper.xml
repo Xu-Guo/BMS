@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itu.dao.BatteryParameterDao">
+
+	<resultMap type="BatteryParameter" id="BatteryParameterResult">
+		<result property="id" column="id"/>
+		<result property="batteryId" column="batteryId"/>
+		<result property="rChargeValue" column="rChargeValue"/>
+		<result property="rDischargeValue" column="rDischargeValue"/>
+		<result property="SensingGain" column="SensingGain"/>
+	</resultMap>
+	
+	
+	<select id="count"  resultType="Integer">
+		select count(*) from t_batteryParameter
+	</select>
+	
+	<select id="list" parameterType="Map" resultMap="BatteryParameterResult">
+		select * from t_batteryParameter 
+		<where>
+			<if test="batteryId!=null and batteryId!=''">
+				batteryId=#{batteryId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getByBatteryId" parameterType="BatteryParameter" resultMap="BatteryParameterResult">
+		select * from t_batteryParameter 
+		<where>
+			<if test="batteryId!=null and batteryId!=''">
+				batteryId=#{batteryId}
+			</if>
+		</where>
+	</select>
+	
+	<update id="update" parameterType="BatteryParameter" >
+		update t_batteryParameter
+		<set>
+			<if test="batteryId!=null and batteryId!=''">
+				batteryId=#{batteryId},
+			</if>
+			<if test="rChargeValue!=null and rChargeValue!=''">
+				rChargeValue=#{rChargeValue}
+			</if>
+			<if test="rDischargeValue!=null and rDischargeValue!=''">
+				rDischargeValue=#{rDischargeValue},
+			</if>
+			<if test="SensingGain!=null and SensingGain!=''">
+				SensingGain=#{SensingGain},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from t_batteryParameter where id=#{id}
+	</delete>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id"  parameterType="commandString" >
+		insert into t_batteryParameter values(null,#{commandType},#{commandAction},#{commandStr})
+	</insert>
+	
+	
+	
+	
+</mapper> 

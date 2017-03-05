@@ -1,5 +1,6 @@
 package com.itu.controller.pub;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.itu.service.AlarmService;
 import com.itu.service.BatteryDataServise;
 import com.itu.service.ErrorService;
 
+
 /**
  * public battery data controller layer
  * @author xu
@@ -30,8 +32,10 @@ public class BatteryDataController {
 	
 	@Resource
 	private BatteryDataServise batteryDataServise;
+	
 	@Resource
 	private ErrorService errorService;
+	
 	@Resource
 	private AlarmService alarmService;
 	
@@ -67,4 +71,6 @@ public class BatteryDataController {
 		modelAndView.setViewName("dataDetail");
 		return modelAndView;
 	}
+		
+	
 }

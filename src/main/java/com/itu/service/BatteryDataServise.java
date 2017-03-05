@@ -24,4 +24,12 @@ public interface BatteryDataServise {
 	 * @return
 	 */
 	public BatteryData getLatestDataByBatteryId(Map<String, Object> map);
+	
+	
+	/**
+	 * add battery data
+	 * @param batteryData
+	 * @return
+	 */
+	public int add(BatteryData batteryData);
 }
