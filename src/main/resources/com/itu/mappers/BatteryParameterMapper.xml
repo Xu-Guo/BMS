@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="batteryId" column="batteryId"/>
 		<result property="rChargeValue" column="rChargeValue"/>
 		<result property="rDischargeValue" column="rDischargeValue"/>
-		<result property="SensingGain" column="SensingGain"/>
+		<result property="Gain" column="Gain"/>
 	</resultMap>
 	
 	
@@ -47,8 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="rDischargeValue!=null and rDischargeValue!=''">
 				rDischargeValue=#{rDischargeValue},
 			</if>
-			<if test="SensingGain!=null and SensingGain!=''">
-				SensingGain=#{SensingGain},
+			<if test="Gain!=null and Gain!=''">
+				Gain=#{Gain},
 			</if>
 		</set>
 		where id=#{id}
@@ -57,12 +57,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		delete from t_batteryParameter where id=#{id}
 	</delete>
-	
-	<insert id="add" useGeneratedKeys="true" keyProperty="id"  parameterType="commandString" >
-		insert into t_batteryParameter values(null,#{commandType},#{commandAction},#{commandStr})
-	</insert>
-	
-	
 	
 	
 </mapper> 
